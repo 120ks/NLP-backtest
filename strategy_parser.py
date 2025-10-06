@@ -198,3 +198,37 @@ class StrategyParser:
                 val = val / 100.0
             return val
         return None
+
+import pandas as pd
+import re
+
+def detect_tickers_and_sector(user_input: str, master_data_path: str = "master_stock_data.csv"):
+    """
+    Enhanced detection logic:
+    Looks for explicit ticker mentions first, otherwise falls back to sector names.
+    Returns: (tickers_list or None, sector or None)
+    """
+    try:
+        master_df = pd.read_csv(master_data_path)
+    except FileNotFoundError:
+        print(f"⚠️ Could not find {master_data_path}. Defaulting to sector-only mode.")
+        return None, None
+
+    # Normalize master data
+    available_tickers = set(master_df["Ticker"].astype(str).str.upper().unique())
+    available_sectors = set(master_df["Sector"].astype(str).str.lower().unique())
+
+    # Extract potential tickers (uppercase words, 1–5 chars)
+    potential_tickers = re.findall(r'\b[A-Z]{1,5}\b', user_input.upper())
+    tickers_found = [t for t in potential_tickers if t in available_tickers]
+
+    if tickers_found:
+        return tickers_found, None
+
+    # Fallback: sector detection
+    for sector in available_sectors:
+        if sector in user_input.lower():
+            return None, sector
+
+    return None, None
+
