@@ -1,0 +1,13 @@
+# config.yaml
+data:
+  csv_path: "master_stock_data.csv"   # path to your main dataset
+
+backtest:
+  default_symbol: "AAPL"              # fallback if none provided
+  initial_capital: 100000             # starting capital (for future use)
+  risk_free_rate: 0.02                # for Sharpe ratio adjustments
+
+report:
+  show_plots: true                    # whether to render matplotlib plots
+  save_plots: false                   # set true to save as PNG instead of showing
+  plot_dir: "plots"                   # directory to save charts

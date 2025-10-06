@@ -1,0 +1,20 @@
+korjaukset
+
+1. Korjaa yksittäisten ticker haku ja testaus...
+
+2. korjaa group allocation systeemi
+
+uudistukset ja parannukset
+
+1. Päivien luokittelu tappioksi ja voitoksi...
+
+2. Vipu kerroin...
+
+Hullu uudistus.
+
+1. Over opt pyyntö, pyydä sektorin tai yksittäisten tickerien joukosta
+parhaat stategiat, esim kuinka syvä pudotus korkealta on paras, entä tp
+ja sl
+
+
+
